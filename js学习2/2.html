@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+    <head>
+        <!-- <style>
+          .collapse {
+    border-collapse: collapse;
+}
+.separate {
+    border-collapse: separate;
+}
+table {
+    display: inline-table;
+    margin: 1em;
+    border: dashed 6px;
+    border-width: 6px;
+}
+table th, table td {
+    border: solid 3px;
+}
+.fx { border-color: orange blue; }
+.gk { border-color: black red; }
+.ie { border-color: blue gold; }
+.tr { border-color: aqua; }
+.sa { border-color: silver blue; }
+.wk { border-color: gold blue; }
+.ch { border-color: red yellow green blue; }
+.bk { border-color: navy blue teal aqua; }
+.op { border-color: red; }
+a:link {
+  color: red;
+}
+
+/* visited link */
+a:visited {
+  color: green;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+a:active {
+  color: blue;
+}
+        </style> -->
+      </head>
+<body>
+    <table class="separate">
+        <caption><code>border-collapse: separate</code></caption>
+        <colgroup><col>123</col><col>456</col></colgroup>
+         <thead><tr><td>Browser</td> <th>Layout Engine</th></tr></thead>
+        <tbody>
+          <tr><th>Browser</th> <th>Layout Engine</th></tr>
+          <tr><td class="fx">Firefox</td> <td class="gk">Gecko</td></tr>
+          <tr><td class="ed">Edge</td> <td class="tr">EdgeHTML</td></tr>
+          <tr><td class="sa">Safari</td> <td class="wk">Webkit</td></tr>
+          <tr><td class="ch">Chrome</td> <td class="bk">Blink</td></tr>
+          <tr><td class="op">Opera</td> <td class="bk">Blink</td></tr>
+        </tbody>
+        <tfoot> <tr><td>Browser</td> <th>Layout Engine</th></tr></tfoot>
+      </table>
+      <table class="collapse">
+        <caption><code>border-collapse: collapse</code></caption>
+        <tbody>
+          <tr><th>Browser</th> <th>Layout Engine</th></tr>
+          <tr><td class="fx">Firefox</td> <td class="gk">Gecko</td></tr>
+          <tr><td class="ed">Edge</td> <td class="tr">EdgeHTML</td></tr>
+          <tr><td class="sa">Safari</td> <td class="wk">Webkit</td></tr>
+          <tr><td class="ch">Chrome</td> <td class="bk">Blink</td></tr>
+          <tr><td class="op">Opera</td> <td class="bk"><label>
+            <input type="radio" name="age" value="young" checked> less than 18
+          </label>
+          <label>
+            <input type="radio" name="age" value="mature"> from 18 to 50
+          </label>
+          <label>
+            <input type="radio" name="age" value="senior"> more than 60
+          </label></td></tr>
+        </tbody>
+      </table>
+      <!-- <div id='dv'>
+          <p>
+              <a href="www.baidu.com">test</a>
+              <a href="www.baidu.com.zip">test1</a>
+              <a href="www.baidu.com.zip">tes2</a>
+          </p>
+          <div id='dv1'></div>
+      </div>
+      <div id='dv2' class="contents test" name = "divname">
+        <ul class="book">
+          <li class="chapter">Chapter 1</li>
+          <li class="chapter">Chapter 1</li>
+        </ul>
+        
+      </div> -->
+  <script>
+    //   alert(document.body.firstElementChild);
+    //   alert(document.body.children[0]);
+    //   alert(document.body.children[0].nextElementSibling);
+    //   alert(document.body.children[1]);
+    //   alert(document.body.children[1].children[1]);
+    //   alert(document.body.children[1].lastElementChild);
+    // let tb = document.body.firstElementChild;
+    // for (let i = 0; i < tb.rows.length; i++) {
+
+    //     tb.rows[i].cells[i].style.background = "red";
+        
+    // };
+//     for (let elem of document.body.querySelector('p').children) {
+//     if (elem.matches('a[href$="zip"]')) {
+//       alert("The archive reference: " + elem.href );
+//     }
+//   }
+//   console.log(document.getElementById('dv').querySelectorAll('*'));
+//   let chapter = document.querySelector('.chapter'); // LI
+//   alert( chapter.closest('.chapter') );
+//   let inputs = document.getElementsByTagName('input');
+
+//   for (let input of inputs) {
+//     alert( input.value + ': ' + input.checked );
+//   }
+
+//   console.log( document.getElementsByName('divname') );
+//   console.log( document.getElementsByClassName('test') );
+    //  alert(document.getElementById('dv').contains(document.getElementById('dv1')));
+    //  alert(document.getElementById('dv').contains(document.getElementById('dv2')));
+  </script>
+    <div id="elem" about="Elephant"></div>
+    <div data-widget-name="menu">Choose the genre</div>
+    <a name="list">the list</a>
+<ul>
+  <li><a href="http://google.com">http://google.com</a></li>
+  <li><a href="/tutorial">/tutorial.html</a></li>
+  <li><a href="local/path">local/path</a></li>
+  <li><a href="ftp://ftp.com/my.zip">ftp://ftp.com/my.zip</a></li>
+  <li><a href="http://nodejs.org">http://nodejs.org</a></li>
+  <li><a href="http://internal.com/test">http://internal.com/test</a></li>
+</ul>
+<div class="alert" id="div">
+    <strong>Hi there!</strong> You've read an important message.
+  </div>
+  <ul id="ul">
+    <li id="one">1</li>
+    <li id="two">4</li>
+  </ul>
+
+    <script>
+        let div2 = div.cloneNode(true);
+        div.after(div2);
+        alert(div2.outerHTML);
+    //   alert( elem.getAttribute('About') ); // (1) 'Elephant'，读取
+  
+    //   elem.setAttribute('Test', 123); // (2) 写入
+  
+    //   alert( elem.outerHTML ); // (3) 查看特性是否在 HTML 中（在）
+  
+    //   for (let attr of elem.attributes) { // (4) 列出所有
+    //     alert( `${attr.name} = ${attr.value}` );
+    //   }
+
+    //   elem.test = "test";
+    //   alert( elem.getAttribute("test") );
+    //   alert(elem.test);
+    // alert(document.querySelector('[data-widget-name = "menu"]').dataset.widgetName);
+    // alert(document.querySelector('[data-widget-name = "menu"]').getAttribute('data-widget-name'));
+
+    //获取html中的href属性需要使用特性，而非属性；
+    // let links = document.querySelectorAll('a');
+    // for (let link of links){
+    //     let href =  link.getAttribute('href');
+    //     if (!href) continue;
+    //     if ( !href.includes('://') ) continue;
+    //     if ( href.startsWith('http://internal.com') ) continue;
+    //     link.style.color = 'orange';
+    // }
+
+    //css选择器实现更简单,利用属性选择器和伪类选择器:not(selector)结合
+    let links = document.querySelectorAll('a[href*="://"]:not([href^="http://internal.com"])');
+    //for循环实现
+
+    // for (let link of links)
+    // link.style.color = 'orange';
+
+    //forEach实现
+    links.forEach(link => link.style.color = 'orange');
+    
+ 
+    
+    </script>
+    <div id = 'container'></div>
+    <table id='cal'>
+    
+    </table>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th><th>Surname</th><th>Age</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>John</td><td>Smith</td><td>10</td>
+        </tr>
+        <tr>
+          <td>Pete</td><td>Brown</td><td>15</td>
+        </tr>
+        <tr>
+          <td>Ann</td><td>Lee</td><td>5</td>
+        </tr>
+      </tbody>
+      </table>
+    
+    <ol id="elem1">
+        <li>Hello</li>
+        <li>World</li>
+      </ol>
+      
+      <script>
+        function clear(elem) { 
+           //最简单的方法：innerHTML 
+          //elem.innerHTML = '';
+
+          //forEach无法解决，因为迭代的次数是随着删除而变化，而index一直在增加。无法准确控制迭代次数。
+        //   elem.childNodes.forEach( (child, index, arr) => {
+        //     child.remove();
+        //     console.log(arr);
+        //     console.log(arr.length);
+        //     console.log(index);
+        //   } );
+
+          //注意：子节点是实时的！！！每次删除第一个子元素，为了防止length变化，可以保存在变量里。
+          //for循环实现，每次删除节点集合的第一个节点，注意length
+        //   let j = elem.childNodes.length;
+        //   for (let i = 0; i < j; i++){
+        //     elem.childNodes[0].remove();
+        //   }
+         //while循环实现，每次删除firstChild
+          while(elem.firstChild){
+              elem.firstChild.remove();
+          }
+        }
+
+
+      
+        clear(elem1); // 清除列表
+        alert(elem1.outerHTML);
+
+        function creatList(){
+        let ul = document.createElement('ul');
+        while(true){
+        
+        let fragment = prompt("please input html:",'');
+        if (!fragment) {
+            break;
+        }
+        let li = document.createElement('li');
+        li.textContent = fragment;
+        ul.append(li);
+        }
+        return ul;
+        }
+        
+        document.body.append( creatList() );
+
+        let data = {
+            "Fish": {
+    "trout": {},
+    "salmon": {}
+  },
+
+  "Tree": {
+    "Huge": {
+      "sequoia": {},
+      "oak": {}
+    },
+    "Flowering": {
+      "apple tree": {},
+      "magnolia": {}
+    }
+  }
+};
+
+
+//通过innerHTML属性创建,递归遍历创建html字符串
+// function createTree(container, data) {
+//           let li = '';
+//           let ul;
+//           for (let key in data){   //终止条件：如果data为空，则不会执行块代码。
+//             li += "<li>" + key + createTree(container, data[key]) +"</li>";  
+//           } 
+//           if (li) {
+//             ul = '<ul>' + li + '</ul>';
+//             container.innerHTML = ul;
+//           }
+//           return ul || '';
+//         }   
+
+//通过DOM创建节点树，然后append方式创建,递归遍历
+function createTree(container, data) {
+          if (!Object.keys(data).length) return;
+
+          let ul = document.createElement('ul');
+
+          for (let key in data) {   //终止条件：如果data为空，则不会执行块代码。
+            
+            let li = document.createElement('li');
+            li.innerHTML = key;
+            createTree(li, data[key]);   //递归调用，基于value在li内部创建ul
+            ul.append(li);
+            container.append(ul);
+            
+          }  
+        }
+
+        let container = document.getElementById('container');
+        createTree(container, data);
+        let ul =  document.getElementById('container').firstElementChild;
+
+        //统计修改li元素内容
+        let lis = document.getElementById('container').firstElementChild.getElementsByTagName('li');
+        for (let li of lis) {
+        let liNum = 0;
+        liNum = li.getElementsByTagName('li').length;
+        if (!liNum) continue;
+        li.firstChild.data += ' [' + liNum +']';
+        }
+        
+// //递归实现
+//       function couterChild(ul) {
+        
+//         let ulNum = 0;
+//         if (!ul.children.length) return liNum;
+//         for (let li of ul.children){
+//             let couter = 0;
+//             let liNum = 0;
+//             couter ++;
+//             if (li.firstElementChild) {
+              
+//               liNum += couterChild(li.firstElementChild);
+//               li.firstChild.data += ' [' + liNum +']';
+              
+//             }
+//             ulNum += couter+liNum;
+//           }
+          
+
+//         return ulNum;
+//       }
+//  
+    
+      
+//       couterChild(ul);
+let cal1 = document.getElementById('cal');
+// function createCalendar(elem, year, month) {
+//   let head = ['MO','TU','WE','TH','FR','SA','SU'];
+//   let lastDay = new Date(year, month, 0).getDate();
+//   let week = new Date(year, month-1).getDay() || 7;
+//   let day = 1;
+//   let trHead = document.createElement('tr');
+//   elem.append(trHead);
+//   for (let i = 0; i < head.length; i++) {
+//     let th = document.createElement('th');
+//     th.textContent = head[i];
+//     trHead.append(th);
+  
+//   }
+  
+//   for (let i = 0; i < Math.ceil(lastDay/7); i++) {
+//     let tr = document.createElement('tr');
+//     elem.append(tr);
+    
+//     for (let j = 1; j <= head.length; j++) {
+//       let td = document.createElement('td');
+//       tr.append(td);
+//       if (i == 0 && j < week) continue;
+//       if (day <= lastDay) {
+//         td.textContent = day ++;
+//       }
+//       //debugger;
+//     }
+//   }
+  
+  
+// }
+
+function createCalendar(elem, year, month) {
+  let head = ['MO','TU','WE','TH','FR','SA','SU'];
+  let lastDay = new Date(year, month, 0).getDate();
+  let week = new Date(year, month-1).getDay() || 7;
+  let day = 1;
+  let trHead = document.createElement('tr');
+  elem.append(trHead);
+  for (let i = 0; i < head.length; i++) {
+    let th = document.createElement('th');
+    th.textContent = head[i];
+    trHead.append(th);
+  
+  }
+  
+  for (let i = 0; i < Math.ceil(lastDay/7); i++) {
+    let tr = document.createElement('tr');
+    elem.append(tr);
+    
+    for (let j = 1; j <= head.length; j++) {
+      let td = document.createElement('td');
+      tr.append(td);
+      if (i == 0 && j < week) continue;
+      if (day <= lastDay) {
+        td.textContent = day ++;
+      }
+      //debugger;
+    }
+  }
+  
+}
+createCalendar(cal1, 2012, 9);
+// let li2 = document.createElement('li');
+// li2.innerHTML = 2;
+// let li3 = document.createElement('li');
+// li3.innerHTML = 3;
+// document.getElementById('one').after(li2);
+// document.getElementById('two').before(li3);
+//插入html,使用insertAdjacentHTML
+one.insertAdjacentHTML('afterend','<li>2</li><li>3</li>');
+
+let table = cal1.nextElementSibling;
+let rows = table.tBodies[0].rows;
+let names = Array.from(rows);
+names.sort(cmp);
+function cmp(trA, trB) {
+  return trA.cells[0].firstChild.data.localeCompare(trB.cells[0].firstChild.data);
+}
+
+table.tBodies[0].append(...names);
+      </script>
+     
+
+</body>
+</html>

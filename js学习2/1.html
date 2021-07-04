@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+ <head>
+ <title>Sort Table Page</title>
+ <style type="text/css">
+     * {font-family:Tahoma,Arial,serif;font-size:large;}
+     body {text-align:center;min-width:760px;}
+     #main {width:720px;margin:0 auto;text-align:left;}
+     #tbContainer {text-align:center;}
+     p {border-bottom:1px dotted #e63;}
+     thead {background-color:#6495ed;cursor:pointer;}
+     table {
+         text-align:center;
+         border:1px solid #4682b4;
+         width:80%;
+         background-color:#4682b4;
+     }
+     td {background-color:#fff;}
+ </style>
+ <script type="text/javascript">
+     /*直接使用大于号、小于号进行排序*/
+     function comp(a,b) {
+         return (a < b) ? -1 : ((a > b) ? 1 : 0);
+     }
+ 
+     /*比较日期时间型数据*/
+     function dateComp(a,b) {
+         var dtA = new Date(Date.parse(a)); // 解析日期字符串，对象转换为Date
+         var dtB = new Date(Date.parse(b));
+         return comp(dtA,dtB);
+     }
+     /*比较布尔型数据*/
+     function boolComp(a,b) {
+         // 将a转换为0或者1，分别对应于true和false
+         if(a == "true") a = 0;
+         else if(a == "false") a = 1;
+         else if(a) a = 0;
+         else a = 1;
+ 
+         if(b == "true") b = 0;
+         else if(b == "false") b = 1;
+         else if(b) b = 0;
+         else b = 1;
+ 
+         return comp(a,b);
+     }
+ 
+     // 对string对象进行扩展，增加trim方法，用于删除字符串两端的空白
+     String.prototype.trim = function() {
+         var re = /^\s+|\s+$/g;
+         return this.replace(re,"");
+     }
+ 
+     function createComp(col,type,inverse) {
+         inverse = inverse || false; // 默认正序排列
+         // 比较函数，正序排列用
+         var compFunc = function(trA,trB) {
+             // trA中待比较元素值
+             var valA = trA.cells[col].firstChild.nodeValue.trim();
+             // trB中待比较元素值
+             var valB = trB.cells[col].firstChild.nodeValue.trim();
+             // 字符串比较
+             if(type == "string") return valA.localeCompare(valB);
+             // 日期时间比较
+             else if(type == "date") return dateComp(valA,valB);
+             // 布尔型比较
+             else if(type == "boolean") return boolComp(valA,valB);
+             // 默认情况下比较
+             else return comp(valA,valB);
+         }
+         // 正序排列
+         if(!inverse) {
+             return compFunc;
+         } else {
+             // 逆序排序
+             return function(trA,trB) {
+                 return -compFunc(trA,trB);
+             }
+         }
+     }
+ 
+     // 全局变量，用于记录当前排序字段和排序方式
+     var currentCol, currentReverse;
+     /*表格排序*/
+     function sort(col,type,reverse) {
+         var doReverse;
+         // 如果再次点击当前排序字段
+         if(col == currentCol) {
+             doReverse = true; // 进行逆序的标志
+             currentReverse = !currentReverse; // 记录排序方式
+         } else {
+             currentReverse = false; // 默认为正序排序
+         }
+         // 记录当前排序的字段
+         currentCol = col;
+         // 待排序表格
+         var tb = document.getElementById("td");
+         // 表格行的父节点
+         var tbody = tb.rows[1].parentNode;
+         // 用于保存所有表格行的数组
+         var allTr = [];
+         // 将所有表格行存入数组，第1行为表头，不参与排序
+         for(var i = 1; i < tb.rows.length; i++) {
+             allTr.push(tb.rows[i]);
+         }
+         if(doReverse) {
+             allTr.reverse();
+         } else {
+             // 按指定的字段、数据类型和排序方式进行排序
+             allTr.sort(createComp(col,type,reverse));
+         }
+         // 创建文档片段对象
+         var frag = document.createDocumentFragment();
+         // 将表格行按照排序后的结果保存到文档片段中
+         for(var i = 0; i < allTr.length; i++) {
+             frag.appendChild(allTr[i]);
+         }
+         // 更新页面的显示
+         tbody.appendChild(frag);
+     }
+ </script>
+ </head>
+ <body>
+     <div id="main">
+         <table id="td" cellpadding="1" cellspacing="1" border="0">
+             <thead>
+                 <tr>
+                     <th onclick="sort(0,'string')">字符串</th>
+                     <th onclick="sort(1,'number')">数字</th>
+                     <th onclick="sort(2,'date')">日期时间</th>
+                     <th onclick="sort(3,'boolean')">布尔型</th>
+                 </tr>
+             </thead>
+             <tbody>
+                 <tr>
+                     <td>abcde</td>
+                     <td>123</td>
+                     <td>November 1,1997 10:15 am</td>
+                     <td>true</td>
+                 </tr>
+                 <tr>
+                     <td>bcdef</td>
+                     <td>345</td>
+                     <td>May 4,2004 9:15 pm</td>
+                     <td>false</td>
+                 </tr>
+                 <tr>
+                     <td>cdefg</td>
+                     <td>234</td>
+                     <td>July 8,2005 8:10 am</td>
+                     <td>true</td>
+                 </tr>
+                 <tr>
+                     <td>defgh</td>
+                     <td>567</td>
+                     <td>April 20,2005 4:30 pm</td>
+                     <td>false</td>
+                 </tr>
+                 <tr>
+                     <td>efghi</td>
+                     <td>456</td>
+                     <td>January 30,2007 6:20 am</td>
+                     <td>true</td>
+                 </tr>
+             </tbody>
+         </table>
+     </div>
+ </body>
+ </html>
